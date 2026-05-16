@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "555025909666",
+    "project_id": "auratrack-52883",
+    "storage_bucket": "auratrack-52883.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555025909666:android:89b8ce29e452a390e294fb",
+        "android_client_info": {
+          "package_name": "com.example.fitness_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBezODpl8JQPBoXMjxF7cO7VOl8wfGX5dM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
