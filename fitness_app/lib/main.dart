@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
-import 'providers/exercise_provider.dart';
-//import 'utils/app_router.dart';
+import 'utils/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,14 +24,13 @@ class FitnessApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => ExerciseProvider()),
       ],
       child: Builder(
         builder: (context) {
           // Build router with access to the AuthProvider so it can react
           // to auth state changes via refreshListenable.
           final authProvider = context.read<AuthProvider>();
-          //final appRouter = AppRouter(authProvider);
+          final appRouter = AppRouter(authProvider);
 
           return MaterialApp.router(
             title: 'Fitness App',
@@ -41,7 +39,7 @@ class FitnessApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
               useMaterial3: true,
             ),
-          //  routerConfig: appRouter.router,
+            routerConfig: appRouter.router,
           );
         },
       ),
