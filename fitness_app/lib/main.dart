@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
+import 'utils/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,44 +24,25 @@ class FitnessApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
-        // We'll add WorkoutProvider and ExerciseProvider in the next batches.
       ],
-      child: MaterialApp(
-        title: 'Fitness App',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-          useMaterial3: true,
-        ),
-        home: const _AuthGate(),
+      child: Builder(
+        builder: (context) {
+          // Build router with access to the AuthProvider so it can react
+          // to auth state changes via refreshListenable.
+          final authProvider = context.read<AuthProvider>();
+          final appRouter = AppRouter(authProvider);
+
+          return MaterialApp.router(
+            title: 'Fitness App',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+              useMaterial3: true,
+            ),
+            routerConfig: appRouter.router,
+          );
+        },
       ),
     );
-  }
-}
-
-/// Temporary router — swaps between auth and home based on AuthProvider state.
-/// We'll replace this with go_router once the screens exist.
-class _AuthGate extends StatelessWidget {
-  const _AuthGate();
-
-  @override
-  Widget build(BuildContext context) {
-    final auth = context.watch<AuthProvider>();
-
-    switch (auth.status) {
-      case AuthStatus.unknown:
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
-      case AuthStatus.unauthenticated:
-        return const Scaffold(
-          body: Center(child: Text('Not signed in — login screen next')),
-        );
-      case AuthStatus.authenticated:
-        return Scaffold(
-          appBar: AppBar(title: const Text('Fitness App')),
-          body: Center(child: Text('Hello ${auth.appUser?.displayName ?? "user"} 👋')),
-        );
-    }
   }
 }
