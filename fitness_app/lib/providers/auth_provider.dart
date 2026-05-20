@@ -135,4 +135,35 @@ class AuthProvider extends ChangeNotifier {
         return e.message ?? 'Authentication failed.';
     }
   }
+
+  /// Updates the user profile in Firestore and refreshes the local AppUser.
+  Future<bool> updateProfile({
+    String? displayName,
+    String? photoBase64,
+    double? weightKg,
+    double? heightCm,
+    int? age,
+    String? gender,
+  }) async {
+    if (_appUser == null) return false;
+    _setLoading(true);
+    try {
+      final updated = _appUser!.copyWith(
+        displayName: displayName,
+        photoBase64: photoBase64,
+        weightKg: weightKg,
+        heightCm: heightCm,
+        age: age,
+        gender: gender,
+      );
+      await _firestoreService.updateUserProfile(updated);
+      _appUser = updated;
+      return true;
+    } catch (e) {
+      _errorMessage = 'Could not save profile changes.';
+      return false;
+    } finally {
+      _setLoading(false);
+    }
+  }
 }

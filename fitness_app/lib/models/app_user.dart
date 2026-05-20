@@ -4,7 +4,7 @@ class AppUser {
   final String uid;
   final String email;
   final String displayName;
-  final String? photoUrl;
+  final String? photoBase64;
   final DateTime createdAt;
   final double? weightKg;
   final double? heightCm;
@@ -15,7 +15,7 @@ class AppUser {
     required this.uid,
     required this.email,
     required this.displayName,
-    this.photoUrl,
+    this.photoBase64,
     required this.createdAt,
     this.weightKg,
     this.heightCm,
@@ -28,7 +28,7 @@ class AppUser {
       uid: uid,
       email: map['email'] ?? '',
       displayName: map['displayName'] ?? '',
-      photoUrl: map['photoUrl'],
+      photoBase64: map['photoBase64'],
       createdAt: (map['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
       weightKg: (map['weightKg'] as num?)?.toDouble(),
       heightCm: (map['heightCm'] as num?)?.toDouble(),
@@ -40,7 +40,7 @@ class AppUser {
   Map<String, dynamic> toMap() => {
     'email': email,
     'displayName': displayName,
-    'photoUrl': photoUrl,
+    'photoBase64': photoBase64,
     'createdAt': Timestamp.fromDate(createdAt),
     'weightKg': weightKg,
     'heightCm': heightCm,
@@ -50,7 +50,7 @@ class AppUser {
 
   AppUser copyWith({
     String? displayName,
-    String? photoUrl,
+    String? photoBase64,
     double? weightKg,
     double? heightCm,
     int? age,
@@ -60,7 +60,7 @@ class AppUser {
       uid: uid,
       email: email,
       displayName: displayName ?? this.displayName,
-      photoUrl: photoUrl ?? this.photoUrl,
+      photoBase64: photoBase64 ?? this.photoBase64,
       createdAt: createdAt,
       weightKg: weightKg ?? this.weightKg,
       heightCm: heightCm ?? this.heightCm,
