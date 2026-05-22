@@ -284,11 +284,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               value: 'male', child: Text('Male')),
                           DropdownMenuItem(
                               value: 'female', child: Text('Female')),
-                          DropdownMenuItem(
-                              value: 'other', child: Text('Other')),
-                          DropdownMenuItem(
-                              value: 'prefer_not_to_say',
-                              child: Text('Prefer not to say')),
                         ],
                         onChanged: isLoading
                             ? null
