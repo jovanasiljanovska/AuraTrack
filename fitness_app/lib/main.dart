@@ -8,6 +8,7 @@ import 'providers/auth_provider.dart';
 import 'providers/exercise_provider.dart';
 import 'utils/app_router.dart';
 import 'providers/workout_provider.dart';
+import 'providers/stats_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,7 @@ class FitnessApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ExerciseProvider()),
         ChangeNotifierProvider(create: (_) => WorkoutProvider()),
+        ChangeNotifierProvider(create: (_) => StatsProvider()),
       ],
       child: Builder(
         builder: (context) {
@@ -38,8 +40,23 @@ class FitnessApp extends StatelessWidget {
             title: 'Fitness App',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: const Color(0xFFFF6B35),
+                brightness: Brightness.light,
+              ),
+              scaffoldBackgroundColor: const Color(0xFFF5F6F8),
               useMaterial3: true,
+              cardTheme: CardThemeData(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                scrolledUnderElevation: 0,
+              ),
             ),
             routerConfig: appRouter.router,
           );
