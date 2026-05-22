@@ -5,7 +5,9 @@ import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 import 'providers/auth_provider.dart';
+import 'providers/exercise_provider.dart';
 import 'utils/app_router.dart';
+import 'providers/workout_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,11 +26,11 @@ class FitnessApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ExerciseProvider()),
+        ChangeNotifierProvider(create: (_) => WorkoutProvider()),
       ],
       child: Builder(
         builder: (context) {
-          // Build router with access to the AuthProvider so it can react
-          // to auth state changes via refreshListenable.
           final authProvider = context.read<AuthProvider>();
           final appRouter = AppRouter(authProvider);
 

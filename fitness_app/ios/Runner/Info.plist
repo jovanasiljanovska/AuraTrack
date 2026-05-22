@@ -8,6 +8,15 @@
     <string>This app accesses your photo library so you can choose a profile photo.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app uses your location to track running, walking, hiking, and cycling routes on the map.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This app tracks your location during workouts so you can see your route even when the screen is off.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

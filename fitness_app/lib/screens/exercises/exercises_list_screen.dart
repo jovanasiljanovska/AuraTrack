@@ -50,16 +50,6 @@ class _ExercisesListScreenState extends State<ExercisesListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Exercises'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            if (context.canPop()) {
-              context.pop();
-            } else {
-              context.go('/home');
-            }
-          },
-        ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(108),
           child: Column(
