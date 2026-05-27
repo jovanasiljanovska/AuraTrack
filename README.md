@@ -79,6 +79,17 @@
 ---
 
 
+# Screenshots
+
+| Home | Exercises | Exercise Detail |
+|---|---|---|
+| ![](fitness_app/screenshots/home.png) | ![](fitness_app/screenshots/exercises.png) | ![](fitness_app/screenshots/detail.png) |
+
+| Timer | Cardio Tracking | History |
+|---|---|---|
+| ![](fitness_app/screenshots/timer.png) | ![](fitness_app/screenshots/cardio.png) | ![](fitness_app/screenshots/history.png) |
+
+
 
 # Технологии
 
