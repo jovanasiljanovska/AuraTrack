@@ -79,6 +79,27 @@
 ---
 
 
+# Screenshots
+
+## Home
+![Home](finess_app/screenshots/home.png)
+
+## Exercises
+![Exercises](screenshots/exercises.png)
+
+## Exercise Detail
+![Exercise Detail](screenshots/detail.png)
+
+## Workout Timer
+![Workout Timer](screenshots/timer.png)
+
+## Cardio Tracking
+![Cardio Tracking](screenshots/cardio.png)
+
+## History
+![History](screenshots/history.png)
+
+
 
 # Технологии
 
