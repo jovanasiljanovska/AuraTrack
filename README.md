@@ -81,23 +81,13 @@
 
 # Screenshots
 
-## Home
-![Home](finess_app/screenshots/home.png)
+| Home | Exercises | Exercise Detail |
+|---|---|---|
+| ![](fitness_app/screenshots/home.png) | ![](fitness_app/screenshots/exercises.png) | ![](fitness_app/screenshots/detail.png) |
 
-## Exercises
-![Exercises](screenshots/exercises.png)
-
-## Exercise Detail
-![Exercise Detail](screenshots/detail.png)
-
-## Workout Timer
-![Workout Timer](screenshots/timer.png)
-
-## Cardio Tracking
-![Cardio Tracking](screenshots/cardio.png)
-
-## History
-![History](screenshots/history.png)
+| Timer | Cardio Tracking | History |
+|---|---|---|
+| ![](fitness_app/screenshots/timer.png) | ![](fitness_app/screenshots/cardio.png) | ![](fitness_app/screenshots/history.png) |
 
 
 
