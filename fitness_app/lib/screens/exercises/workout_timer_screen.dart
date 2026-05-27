@@ -9,7 +9,6 @@ import '../../providers/workout_provider.dart';
 import '../../utils/formatters.dart';
 import '../../widgets/exercise_video_player.dart';
 
-
 class WorkoutTimerScreen extends StatefulWidget {
   const WorkoutTimerScreen({super.key, required this.exerciseId});
 
@@ -58,8 +57,7 @@ class _WorkoutTimerScreenState extends State<WorkoutTimerScreen> {
     );
     if (!confirmed) return;
 
-    // Capture values BEFORE finishing — finish() resets the provider state
-    // depending on your flow, so snapshot what we need for the summary screen.
+    // Capture values BEFORE finishing — finish() alters states inside components
     final exerciseName = workout.exercise?.name ?? 'Workout';
     final duration = workout.elapsed;
 
@@ -70,15 +68,12 @@ class _WorkoutTimerScreenState extends State<WorkoutTimerScreen> {
     if (!mounted) return;
 
     if (id != null) {
-      // Read calories after finish so the MET estimate is final.
-      // Note: we re-read from provider in case it was just calculated.
       final calories = _estimateClientSideCalories(
         durationSeconds: duration.inSeconds,
         weightKg: auth.appUser?.weightKg?.round() ?? 70,
       );
 
-      // Navigate to summary, replacing the timer in the stack so back
-      // doesn't return to a finished timer screen.
+      // Navigate to summary screen
       context.go(
         '/workout-summary',
         extra: WorkoutSummaryArgs(
@@ -87,6 +82,9 @@ class _WorkoutTimerScreenState extends State<WorkoutTimerScreen> {
           calories: calories,
         ),
       );
+
+      // Clean the state machine so the next workout doesn't read historical numbers
+      workout.clearFinishedWorkout();
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(workout.errorMessage ?? 'Could not save')),
@@ -94,8 +92,6 @@ class _WorkoutTimerScreenState extends State<WorkoutTimerScreen> {
     }
   }
 
-  /// Mirror of the provider's strength-MET estimate so we don't have to
-  /// expose internal fields. MET 5.0 × weight × hours.
   int _estimateClientSideCalories({
     required int durationSeconds,
     required int weightKg,
@@ -169,7 +165,6 @@ class _WorkoutTimerScreenState extends State<WorkoutTimerScreen> {
         body: SafeArea(
           child: Column(
             children: [
-              // Video at the top — autoplay muted, loops
               if (videoUrl != null)
                 ClipRRect(
                   borderRadius: const BorderRadius.vertical(
@@ -181,8 +176,6 @@ class _WorkoutTimerScreenState extends State<WorkoutTimerScreen> {
                     muted: true,
                   ),
                 ),
-
-              // Timer section fills remaining space
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -226,7 +219,6 @@ class _WorkoutTimerScreenState extends State<WorkoutTimerScreen> {
   }
 }
 
-/// Args passed to the summary screen via go_router's `extra`.
 class WorkoutSummaryArgs {
   WorkoutSummaryArgs({
     required this.exerciseName,
@@ -238,8 +230,6 @@ class WorkoutSummaryArgs {
   final Duration duration;
   final int? calories;
 }
-
-// ---------- Reused sub-widgets ----------
 
 class _StatusBadge extends StatelessWidget {
   const _StatusBadge({required this.state});

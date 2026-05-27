@@ -39,7 +39,7 @@ class CardioPickerScreen extends StatelessWidget {
                   color: Colors.grey,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 30),
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,
@@ -76,7 +76,7 @@ class _ActivityCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   color: scheme.primaryContainer,
                   shape: BoxShape.circle,

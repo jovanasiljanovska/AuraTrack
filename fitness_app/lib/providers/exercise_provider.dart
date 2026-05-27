@@ -49,7 +49,7 @@ class ExerciseProvider extends ChangeNotifier {
     'LOWER LEGS',
     'NECK',
     'HIPS',
-    'CARDIO',
+   // 'CARDIO',
   ];
 
   // ----- Public API -----
@@ -125,7 +125,16 @@ class ExerciseProvider extends ChangeNotifier {
         limit: 20,
       );
 
-      _exercises.addAll(page.exercises);
+      //_exercises.addAll(page.exercises);
+      if (_searchQuery.isNotEmpty) {
+        final query = _searchQuery.toLowerCase();
+        final filtered = page.exercises
+            .where((ex) => ex.name.toLowerCase().contains(query))
+            .toList();
+        _exercises.addAll(filtered);
+      } else {
+        _exercises.addAll(page.exercises);
+      }
       for (final ex in page.exercises) {
         _cache[ex.exerciseId] = ex;
       }

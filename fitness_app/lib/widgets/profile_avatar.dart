@@ -45,18 +45,17 @@ class ProfileAvatar extends StatelessWidget {
     );
 
     if (onTap != null) {
-      avatar = Stack(
-        children: [
-          avatar,
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: Material(
-              color: colorScheme.primary,
-              shape: const CircleBorder(),
-              child: InkWell(
-                customBorder: const CircleBorder(),
-                onTap: onTap,
+      avatar = GestureDetector(
+        onTap: onTap,
+        child: Stack(
+          children: [
+            avatar,
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: Material(
+                color: colorScheme.primary,
+                shape: const CircleBorder(),
                 child: Padding(
                   padding: const EdgeInsets.all(6),
                   child: Icon(Icons.camera_alt,
@@ -65,8 +64,8 @@ class ProfileAvatar extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     }
 

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
@@ -22,13 +21,11 @@ class WorkoutProvider extends ChangeNotifier {
   final FirestoreService _firestore;
   final LocationService _location;
 
-
   WorkoutState _state = WorkoutState.idle;
   WorkoutState get state => _state;
 
   WorkoutType? _workoutType;
   WorkoutType? get workoutType => _workoutType;
-
 
   Exercise? _exercise;
   Exercise? get exercise => _exercise;
@@ -39,12 +36,10 @@ class WorkoutProvider extends ChangeNotifier {
   DateTime? _startTime;
   DateTime? get startTime => _startTime;
 
-
   Duration _elapsed = Duration.zero;
   Duration get elapsed => _elapsed;
   Timer? _ticker;
   DateTime? _lastTickTime;
-
 
   final List<RoutePoint> _routePoints = [];
   List<RoutePoint> get routePoints => List.unmodifiable(_routePoints);
@@ -52,7 +47,6 @@ class WorkoutProvider extends ChangeNotifier {
 
   double get distanceMeters =>
       LocationService.calculateDistanceMeters(_routePoints);
-
 
   double? get paceMinPerKm {
     final km = distanceMeters / 1000;
@@ -63,9 +57,6 @@ class WorkoutProvider extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
-
-
-
   void startExerciseWorkout(Exercise exercise) {
     _reset();
     _workoutType = WorkoutType.exercise;
@@ -75,7 +66,6 @@ class WorkoutProvider extends ChangeNotifier {
     _startTicker();
     notifyListeners();
   }
-
 
   Future<void> startCardioWorkout(CardioActivity activity) async {
     _reset();
@@ -115,7 +105,6 @@ class WorkoutProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
   Future<String?> finish({
     required String userId,
     int? userWeightKg,
@@ -123,16 +112,12 @@ class WorkoutProvider extends ChangeNotifier {
   }) async {
     if (_state == WorkoutState.idle) return null;
 
-
     _ticker?.cancel();
     _ticker = null;
 
-
     try {
       await _locationSub?.cancel();
-    } catch (_) {
-
-    }
+    } catch (_) {}
     _locationSub = null;
 
     _state = WorkoutState.finished;
@@ -169,21 +154,22 @@ class WorkoutProvider extends ChangeNotifier {
     }
   }
 
-
   void cancel() {
     _ticker?.cancel();
     _ticker = null;
     try {
       _locationSub?.cancel();
-    } catch (_) {
-
-    }
+    } catch (_) {}
     _locationSub = null;
     _reset();
     notifyListeners();
   }
 
 
+  void clearFinishedWorkout() {
+    _reset();
+    notifyListeners();
+  }
 
   void _reset() {
     _state = WorkoutState.idle;
@@ -226,7 +212,6 @@ class WorkoutProvider extends ChangeNotifier {
     );
   }
 
-
   int? _estimateCalories(int weightKg) {
     final hours = _elapsed.inSeconds / 3600;
     if (hours <= 0) return null;
@@ -235,21 +220,17 @@ class WorkoutProvider extends ChangeNotifier {
     if (_workoutType == WorkoutType.cardio) {
       met = _cardio!.metValue;
     } else {
-
       met = 5.0;
     }
     return (met * weightKg * hours).round();
   }
-
 
   @override
   void dispose() {
     _ticker?.cancel();
     try {
       _locationSub?.cancel();
-    } catch (_) {
-      // Ignore.
-    }
+    } catch (_) {}
     super.dispose();
   }
 }

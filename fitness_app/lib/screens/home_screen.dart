@@ -233,7 +233,7 @@ class _HeroHeader extends StatelessWidget {
                   ProfileAvatar(
                     displayName: displayName,
                     photoBase64: photoBase64,
-                    radius: 26,
+                    radius: 30,
                     onTap: onAvatarTap,
                   ),
                 ],
