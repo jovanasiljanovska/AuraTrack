@@ -126,11 +126,11 @@ lib/
 │
 ├── screens/
 │   ├── auth/
-│   ├── home/
-│   ├── profile/
+│   ├── home_screen.dart
+│   ├── profile_screen.dart
 │   ├── exercises/
 │   ├── cardio/
-│   └── history/
+│   └── history_screen.dart
 │
 ├── widgets/
 │   ├── app_text_field.dart
