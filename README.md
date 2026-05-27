@@ -61,7 +61,6 @@
 ## Историја и статистики
 - Историја на сите тренинзи групирани по датум
 - Преглед на рута за кардио активности
-- Swipe-to-delete со confirmation dialog
 - Неделни статистики:
   - Вкупен број тренинзи
   - Активно време
@@ -79,23 +78,7 @@
 
 ---
 
-# Screenshots
 
-| Home | Exercises | Exercise Detail |
-|---<img width="567" height="1158" alt="image" src="https://github.com/user-attachments/assets/178365d2-4c53-4017-8f67-158c533d8da9" />---|----<img width="584" height="1159" alt="image" src="https://github.com/user-attachments/assets/03de03b4-b414-484b-8358-ade2cbffb2ed" />-------|------<img width="581" height="1156" alt="image" src="https://github.com/user-attachments/assets/c80f1e05-2e94-49a3-9766-f75a02b78265" />-----------|
-
-
-
-
-
-
-| Gradient header, статистики и recent workout | Search, филтри и infinite scroll | Видео, инструкции и таргетирани мускули |
-
-| Timer | Cardio Tracking | History |
-|-------|-----------------|---------|
-| Live timer и autoplay видео | GPS tracking и route map | Историја на тренинзи |
-
----
 
 # Технологии
 
@@ -222,6 +205,3 @@ users/{uid}
 
 ---
 
-# Лиценца
-
-Овој проект е изработен како факултетска задача по предметот Мобилни Информациски Системи на ФИНКИ.
